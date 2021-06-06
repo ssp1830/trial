@@ -38,7 +38,7 @@ statewise=state()
 
 def vacs():
     
-    vac=pd.read_csv("C:/Users/P. SHANKAR/Downloads/archive (8)/covid_vaccine_statewise.csv")
+    vac=pd.read_csv("archive (8)/covid_vaccine_statewise.csv")
     return vac
 vac=vacs()
 def india():
