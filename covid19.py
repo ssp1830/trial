@@ -33,19 +33,12 @@ st.markdown("<style>body{background-color:blue;}</style>",unsafe_allow_html=True
 
 
 def state():
-    state=pd.read_csv("archive (8)/StatewiseTestingDetails.csv")
-    return state
-statewise=state()
-
-def vacs():
-    
+    statewise=pd.read_csv("archive (8)/StatewiseTestingDetails.csv")
     vac=pd.read_csv("archive (8)/covid_vaccine_statewise.csv")
-    return vac
-vac=vacs()
-def india():
-   cov=pd.read_csv("archive (8)/covid_19_india.csv")
-   return cov
-cov=india()
+    cov=pd.read_csv("archive (8)/covid_19_india.csv")
+    return 
+state()
+
 data1=cov[['Date', 'State/UnionTerritory','Cured','Deaths','Confirmed']]
 data1 = data1.drop(labels=range(15086, 15114), axis=0)
 data1["Active Cases"]=data1["Confirmed"]-(data1["Cured"]+data1["Deaths"])
