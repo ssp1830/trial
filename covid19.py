@@ -147,17 +147,17 @@ if analysis=="Statewise analysis":
     fig_state.add_trace(go.Bar(x=state_data["State"],y=state_data["Deaths"],text=state_data['Deaths'],name="Deaths") )   
     fig_state.update_layout(barmode='group',legend_orientation="h",legend=dict(x= 0.3, y=1.1))
     st.plotly_chart(fig_state)
-    st.header("Let's see an overview of how is each state coping with the virus")
+    st.header("Let us see an overview of how is each state coping with the virus.")
     ste_act=px.line(data1,x='Date',y='Active Cases', color="State/UnionTerritory",width=800,height=400)
   
 
     st.plotly_chart(ste_act)
     
-    st.write("The graph shows how the number of active cases changed over the year. Maharashtra faced a severe surge during both the waves of the pandemic.The surge during the second wave in the months of March-May is very steep and almost double of the previous one.")
+    st.write("The graph shows how the number of active cases changed over the year. Maharashtra faced a severe surge during both the waves of the pandemic.The surge during the second wave in the months of March-May is very steep and almost double that of the previous one.")
     st.header("Mortality")
     state_deaths=px.line(data1,x='Date',y='Deaths', color="State/UnionTerritory",width=800,height=400)
     st.plotly_chart(state_deaths)
-    st.write("As of 31st May, Maharshtra has the highest number of mortalities due to Covid(94.84K), followed by Karnataka in the second with 29.09K deaths")
+    st.write("As of 31st May, Maharshtra has the highest number of mortalities due to Covid(94.84K), followed by Karnataka with 29.09K deaths")
     
     st.header("Total Samples taken")
     samples=px.bar(statewise,x=statewise["State"],y="TotalSamples",color="State",width=800,height=400)
@@ -165,7 +165,7 @@ if analysis=="Statewise analysis":
     st.plotly_chart(samples)
 
     
-    st.write("As of 31st May, UP has done the most number of samples and it can be corrrelated to it being the most populous state in India. The testing is comparitively low in the union territories, considering the low population.Testing in states like Uttrakhand, Bihar,West Bengal,Orissa can be ramped up even more.")
+    st.write("As of 31st May, UP has done the most number of tests and it can be correlated to it being the most populous state in India. The testing is comparitively low in the union territories, considering the low population.Testing in states like Uttrakhand, Bihar,West Bengal,Orissa can be ramped up even more.")
     st.header("Recovered Cases")
     p1=px.bar(data1_max, x="State",y=data1_max["Cured"], color="Cured", height=500,width=1000)
     
@@ -173,15 +173,16 @@ if analysis=="Statewise analysis":
     st.header("Active Cases in each state(as of 31/05)")
     p3=px.bar(data1_max,x="State",y="Active Cases",color="Active Cases",width=1000)
     st.plotly_chart(p3)
-    st.header("Recovery Rate")
     st.write("As of 31st May, Karnataka leads the chart with highest number of Active cases, followed by Tamil Nadu and Maharashtra")
+    st.header("Recovery Rate")
+    
     p2=px.bar(data1_max,x="State",y="Recovery rate",color="Recovery rate",width=1000,height=800, )
     
     st.plotly_chart(p2)
     st.header("States with maximum number of cases")
-    st.write("For better understanding, here are the the states ranked according to the present number of active cases")
+    st.write("For better understanding, here are the 10 states with maximum number of active cases (as of 31st May)")
     st.write(data_top.head(10))
-    st.header("The chloropleth has been plotted on tableau, Move your cursor on any of the states to get an overview")
+    st.write("The chloropleth has been plotted on tableau, Move your cursor on any of the states to get an overview")
     html_temp='''<div class='tableauPlaceholder' id='viz1623002119639' style='position: relative'><noscript><a href='#'><img alt='COVID-19 Scenario,(As of 31st May) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;co&#47;covid-19may31&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='covid-19may31&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;co&#47;covid-19may31&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1623002119639');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>'''                        
     components.html(html_temp, width=700,height=500)
    
@@ -210,11 +211,11 @@ if analysis=="Vaccination report":
 
     
 
-    st.header("Let's look at how the vaccination drive is going on in the country")
+    st.header("Let us look at how the vaccination drive is going on in the country")
     st.write("First, we need to make sense out of the numbers. The following data gives a gist of how far we have suceeded with the ongoing drive")
     st.write(India_status.transpose())
-    st.write("Numbers do not provide the best picture, So it is always best to visualize to draw necessary conclusions")
-    st.header("Individuals Vaccinated in each state")
+    st.write("Numbers do not provide the best picture, So it is always better to visualize to draw necessary conclusions")
+    st.header("Individuals vaccinated in each state")
     figx=go.Figure()
     figx.add_trace(go.Bar(x=vaccine["State"],y=vaccine["Male(Individuals Vaccinated)"],name="Male"))
     figx.add_trace(go.Bar(x=vaccine["State"], y= vaccine["Female(Individuals Vaccinated)"], name='Female'))
@@ -229,7 +230,7 @@ if analysis=="Vaccination report":
     st.plotly_chart(gender)
     st.write("The pie chart shows, the number of transgenders who have been administerd the vaccine account to only 0.0156% of the total. People should be made aware and responsibility should be taken up by higher bodies for a faster, smoother and a fair vaccination drive. ")
     
-    st.write("Population of India as on 3rd June is 1392234846.0,out of which 336787050.0 have atleats got their first jab, hence we still have" ,Percentage_left,"% of poplulation who are yet to recieve their ammunition against the virus")
+    st.write("Population of India as on 3rd June is about 1.392 Billion, out of which 336787050.0 have atleatst got their first jab, hence we still have" ,round(Percentage_left,3),"% of poplulation who are yet to receive their ammunition against the virus.")
     st.header("Vaccines")
     
    
@@ -240,6 +241,6 @@ if analysis=="Vaccination report":
     
     st.header("State-wise Vaccination Summary")
     st.write(vaccination)
-    st.header("The following Chloropleth shows the progress of the vaccination drive in the country. Move your cursor over any of the states to get a quick summary.")
+    st.write("The following Chloropleth shows the progress of the vaccination drive in the country. Move your cursor over any of the states to get a quick summary.")
     vac_temp='''<div class='tableauPlaceholder' id='viz1622789126447' style='position: relative'><noscript><a href='#'><img alt='VACCINATION DATA ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;va&#47;vaccinationdata_16227420602060&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='vaccinationdata_16227420602060&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;va&#47;vaccinationdata_16227420602060&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1622789126447');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>'''
     components.html(vac_temp, width=700,height=500)
