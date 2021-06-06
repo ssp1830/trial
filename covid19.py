@@ -109,7 +109,7 @@ if analysis=="India-Daily report":
      st.header("Monthly Active Cases")
      st.plotly_chart(active)
      st.write("The above graph indicates a clear spike in the number of cases in the month of April")
-     st.header("Monthly Deaths Reported")
+     st.header("Monthly Cured Cases")
      st.plotly_chart(cured)
      st.write("The number of recoveries is increasing steadily over the months.")
     
@@ -136,7 +136,7 @@ if analysis=="Statewise analysis":
     
     
     state1=st.selectbox("select a state or UT",(data1_max["State"].unique()))
-    st.header("Following is the data for",state1)
+    st.header("Following is the data", state1 )
     state_data=data1_max.loc[data1_max["State"]==state1,['Date', 'State', 'Cured', 'Deaths', 'Confirmed',
        'Active Cases', 'Death rate', 'Recovery rate']]
     st.write(state_data)
