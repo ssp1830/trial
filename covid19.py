@@ -18,7 +18,7 @@ import streamlit.components.v1 as components
 import toml
 
 st.title("COVID-19-Report")
-st.write("India has been recovering from the 2nd wave of Covid-19.Access to enormous amounts of data makes it easier to visualize and understand what's really happening? Here is a dashboard that visualises the spread of the pandemic in the country. ")
+st.write("India has been recovering from the 2nd wave of Covid-19.Access to enormous amounts of data makes it easier to visualize and understand what's really happening? Here is a dashboard that visualises the spread of the pandemic in the country.Click on the > on the left corner to choose the analysis type ")
 image=Image.open("cov19.jpg")
 st.image(image,use_column_width=True)
 st.sidebar.title("ANALYSIS TYPE")
@@ -73,7 +73,7 @@ if analysis=="India-Daily report":
      
      s=z.sort_values(by="TotalSamples",ascending=False)
 
-     st.header("How's India dealing with the pandemic")
+     st.header("How's India dealing with the pandemic?")
     
      st.write("Here's the latest data that's available")
      st.write((daily[daily["Date"]==daily["Date"].max()]).transpose())
@@ -104,11 +104,12 @@ if analysis=="India-Daily report":
      df21 = (df21.groupby(df21['Date'].dt.month_name(), sort=False)["Cured","Deaths","Confirmed","Active Cases"]).mean().reset_index()
      df21.drop(labels=range(5,6),axis=0,inplace=True)
      df21.Date.rename("Month",inplace=True)
-     active=px.bar(y=df21["Active Cases"],x=df21.Date,title="Monthly Active Cases",labels={"x":"Month","y":"Active Cases"},color=df21["Active Cases"])
-     cured=px.bar(y=df21["Cured"],x=df21["Date"],title="Monthly Cured",labels={"x":"Month","y":"Cured"},color=df21["Cured"])
-    
+     active=px.bar(y=df21["Active Cases"],x=df21.Date,labels={"x":"Month","y":"Active Cases"},color=df21["Active Cases"])
+     cured=px.bar(y=df21["Cured"],x=df21["Date"],labels={"x":"Month","y":"Cured"},color=df21["Cured"])
+     st.header("Monthly Active Cases")
      st.plotly_chart(active)
      st.write("The above graph indicates a clear spike in the number of cases in the month of April")
+     st.header("Monthly Deaths Reported")
      st.plotly_chart(cured)
      st.write("The number of recoveries is increasing steadily over the months.")
     
@@ -169,7 +170,7 @@ if analysis=="Statewise analysis":
     p1=px.bar(data1_max, x="State",y=data1_max["Cured"], color="Cured", height=500,width=1000)
     
     st.plotly_chart(p1)
-    st.header("Active Cases in each state(as of 31/05")
+    st.header("Active Cases in each state(as of 31/05)")
     p3=px.bar(data1_max,x="State",y="Active Cases",color="Active Cases",width=1000)
     st.plotly_chart(p3)
     st.header("Recovery Rate")
@@ -182,7 +183,7 @@ if analysis=="Statewise analysis":
     st.write(data_top.head(10))
     st.header("The chloropleth has been plotted on tableau, Move your cursor on any of the states to get an overview")
     html_temp='''<div class='tableauPlaceholder' id='viz1622740240077' style='position: relative'><noscript><a href='#'><img alt='COVID-19 Scenario,(AS OF 31st May) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;co&#47;covid-19may31&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='covid-19may31&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;co&#47;covid-19may31&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1622740240077');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>'''
-    components.html(html_temp, width=800,height=400)
+    components.html(html_temp, width=1200,height=800)
    
   
 if analysis=="Vaccination report":
@@ -241,4 +242,4 @@ if analysis=="Vaccination report":
     st.write(vaccination)
     st.header("The following Chloropleth shows the progress of the vaccination drive in the country. Move your cursor over any of the states")
     vac_temp='''<div class='tableauPlaceholder' id='viz1622789126447' style='position: relative'><noscript><a href='#'><img alt='VACCINATION DATA ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;va&#47;vaccinationdata_16227420602060&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='vaccinationdata_16227420602060&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;va&#47;vaccinationdata_16227420602060&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1622789126447');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>'''
-    components.html(vac_temp, width=800,height=400)
+    components.html(vac_temp, width=1200,height=800)
