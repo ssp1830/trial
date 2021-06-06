@@ -156,7 +156,7 @@ if analysis=="Statewise analysis":
     st.write("As of 31st May, Maharshtra has the highest number of mortalities due to Covid(94.84K), followed by Karnataka in the second with 29.09K deaths")
     
     st.header("Total Samples taken")
-    samples=px.line(statewise,x=statewise["State/UnionTerritories"],y="TotalSamples",color="TotalSamples",width=800,height=400)
+    samples=px.line(statewise,x=statewise["State/UnionTerritory"],y="TotalSamples",color="TotalSamples",width=800,height=400)
     
     st.plotly_chart(samples)
    
