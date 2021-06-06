@@ -133,7 +133,7 @@ if analysis=="Statewise analysis":
     
     state=st.selectbox("select a state or UT",(data1["State/UnionTerritory"].unique()))
     st.header("Following is the data for",state)
-    state_data=data1_max[data1_max["State"]==state]
+    state_data=data1_max[data1_max["State/UnionTerritory"]==state]
     st.write(state_data)
     fig_state=go.Figure()
     fig_state.add_trace(go.Bar(x=state_data["State"],y=state_data["Confirmed"],text=state_data['Confirmed'],name="Total Confirmed Cases"))  
