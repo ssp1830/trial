@@ -57,7 +57,7 @@ data1_max=data1[data1["Date"]=="2021-05-31"]
 
 data1_max["Death rate"]=data1_max["Deaths"]/data1_max["Confirmed"]
 data1_max["Recovery rate"]=data1_max["Cured"]/data1_max["Confirmed"]
-data1_max.rename(columns={'State/UnionTerritory': 'State'}, inplace=True)
+data1_max.rename(columns={'State/UnionTerritory':'State'}, inplace=True)
 data1_max=pd.merge(data1_max,z,how="outer")
 data_top=data1_max.sort_values(by="Active Cases", ascending=False)
 data_top.drop(columns=["Date"],inplace=True)
@@ -131,10 +131,10 @@ if analysis=="India-Daily report":
 if analysis=="Statewise analysis":
     
     
-    state=st.selectbox("select a state or UT",(data1["State/UnionTerritory"].unique()))
-    st.header("Following is the data for",state)
-    state_data=data1_max[data1_max["State/UnionTerritory"]==state]
-    st.write(state_data)
+    state1=st.selectbox("select a state or UT",(data1["State/UnionTerritory"].unique()))
+    st.header("Following is the data for",state1)
+    state_data=data1_max[data1_max["State"]==state1]
+    st.write(state_data1)
     fig_state=go.Figure()
     fig_state.add_trace(go.Bar(x=state_data["State"],y=state_data["Confirmed"],text=state_data['Confirmed'],name="Total Confirmed Cases"))  
     fig_state.add_trace(go.Bar(x=state_data['State'],y=state_data['Active Cases'],text=state_data['Active Cases'],name="Active Cases"))
