@@ -153,11 +153,15 @@ if analysis=="Statewise analysis":
 
     st.plotly_chart(ste_act)
     
-    st.write("The graph shows how the number of active cases changed over the year. Maharashtra faced a severe surge during both the waves of the pandemic.The surge during the second wave in the months of March-May is very steep and almost double that of the previous one.")
+    st.write("The graph shows how the number of active cases changed ever since the first case was reported. Maharashtra faced a severe surge during both the waves of the pandemic.The surge during the second wave in the months of March-May is very steep and almost double that of the previous one.")
     st.header("Mortality")
     state_deaths=px.line(data1,x='Date',y='Deaths', color="State/UnionTerritory",width=800,height=400)
     st.plotly_chart(state_deaths)
     st.write("As of 31st May, Maharshtra has the highest number of mortalities due to Covid(94.84K), followed by Karnataka with 29.09K deaths")
+    p_rate=px.bar(data1_max,x="State",y="Death Rate",color="Death Rate",width=1000)
+    st.header("Death Rate")
+    st.plotly_chart(p_rate)
+    st.write("While Maharashtra has the highest number of deaths (94.84K) followed by Karnataka with 29.09K, Punjab clearly has the highest mortality rate.")
     
     st.header("Total Samples taken")
     samples=px.bar(statewise,x=statewise["State"],y="TotalSamples",color="State",width=800,height=400)
