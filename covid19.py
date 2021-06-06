@@ -136,7 +136,7 @@ if analysis=="Statewise analysis":
     
     
     state1=st.selectbox("select a state or UT",(data1_max["State"].unique()))
-    st.header("Following is the data", state1 )
+    st.header("Following is the data", state1,"." )
     state_data=data1_max.loc[data1_max["State"]==state1,['Date', 'State', 'Cured', 'Deaths', 'Confirmed',
        'Active Cases', 'Death rate', 'Recovery rate']]
     st.write(state_data)
