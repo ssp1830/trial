@@ -135,8 +135,8 @@ if analysis=="Statewise analysis":
    
     
     
-    state1=st.selectbox("select a state or UT",(data1_max["State"].unique()))
-    st.header("Following is the data", state1,"." )
+    state1=st.selectbox("Select a State or UT:",(data1_max["State"].unique()))
+    st.write("Following is the data", state1,"." )
     state_data=data1_max.loc[data1_max["State"]==state1,['Date', 'State', 'Cured', 'Deaths', 'Confirmed',
        'Active Cases', 'Death rate', 'Recovery rate']]
     st.write(state_data)
@@ -183,7 +183,7 @@ if analysis=="Statewise analysis":
     p2=px.bar(data1_max,x="State",y="Recovery rate",color="Recovery rate",width=1000,height=800, )
     
     st.plotly_chart(p2)
-    st.header("States with maximum number of cases")
+    st.header("States with maximum number of cases:")
     st.write("For better understanding, here are the 10 states with maximum number of active cases (as of 31st May)")
     st.write(data_top.head(10))
     st.write("The choropleth has been plotted on tableau, Move your cursor on any of the states to get an overview")
