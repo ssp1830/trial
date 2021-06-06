@@ -32,7 +32,7 @@ st.markdown("<style>body{background-color:blue;}</style>",unsafe_allow_html=True
 
 
 def state():
-    state=pd.read_csv("C:/Users/P. SHANKAR/Downloads/archive (8)/StatewiseTestingDetails.csv")
+    state=pd.read_csv("archive (8)/StatewiseTestingDetails.csv")
     return state
 statewise=state()
 
