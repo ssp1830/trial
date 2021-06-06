@@ -29,15 +29,22 @@ st.markdown("<style>body{background-color:blue;}</style>",unsafe_allow_html=True
 
 
 
-@st.cache
+@st.cache(allow_output_mutation=True)
 
 
 def state():
-    statewise=pd.read_csv("archive (8)/StatewiseTestingDetails.csv")
-    vac=pd.read_csv("archive (8)/covid_vaccine_statewise.csv")
+    state=pd.read_csv("archive (8)/StatewiseTestingDetails.csv")
+    return state
+@st.cache(allow_output_mutation=True)
+def vaccine():
+ vac=pd.read_csv("archive (8)/covid_vaccine_statewise.csv")
+@st.cache(allow_output_mutation=True)
+def covid():
     cov=pd.read_csv("archive (8)/covid_19_india.csv")
-    return 
-state()
+    return covid
+statewise=state()
+vac=vaccine()
+cov=covid()
 
 data1=cov[['Date', 'State/UnionTerritory','Cured','Deaths','Confirmed']]
 data1 = data1.drop(labels=range(15086, 15114), axis=0)
