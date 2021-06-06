@@ -18,7 +18,7 @@ import streamlit.components.v1 as components
 import toml
 
 st.title("COVID-19-Report")
-st.write("India has been recovering from the 2nd wave of Covid-19.Access to enormous amounts of data makes it easier to visualize and understand what's really happening? Here is a dashboard that visualises the spread of the pandemic in the country.Click on the > on the left corner to choose the analysis type ")
+st.write("India has been recovering from the 2nd wave of Covid-19.Access to enormous amounts of data makes it easier to visualize and understand what's really happening? Here is a dashboard that visualises the spread of the pandemic in the country.Click on the '>'on the left corner to choose the analysis type. ")
 image=Image.open("cov19.jpg")
 st.image(image,use_column_width=True)
 st.sidebar.title("ANALYSIS TYPE")
