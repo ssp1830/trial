@@ -68,6 +68,7 @@ if analysis=="India-Daily report":
      data1_max=pd.merge(data1_max,z,how="outer")
      data_top=data1_max.sort_values(by="Active Cases", ascending=False)
      data_top.drop(columns=["Date"],inplace=True)
+     z=statewise.groupby("State")["TotalSamples"].last().reset_index()
      s=z.sort_values(by="TotalSamples",ascending=False)
 
      st.header("How's India dealing with the pandemic")
