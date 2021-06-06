@@ -112,6 +112,24 @@ if analysis=="India-Daily report":
      st.write("The number of recoveries is increasing steadily over the months.")
     
 if analysis=="Statewise analysis":
+    data1=cov[['Date', 'State/UnionTerritory','Cured','Deaths','Confirmed']]
+    data1 = data1.drop(labels=range(15086, 15114), axis=0)
+    data1["Active Cases"]=data1["Confirmed"]-(data1["Cured"]+data1["Deaths"])
+    daily = cov.groupby(['Date'])['Confirmed', 'Deaths','Cured',].sum().reset_index()
+    daily['new_confirmed'] = daily.Confirmed.diff()
+    daily['new_deaths'] = daily.Deaths.diff()
+    daily['new_cured'] = daily.Cured.diff()
+
+    data1_max=data1[data1["Date"]=="2021-05-31"]
+
+    data1_max["Death rate"]=data1_max["Deaths"]/data1_max["Confirmed"]
+    data1_max["Recovery rate"]=data1_max["Cured"]/data1_max["Confirmed"]
+    data1_max.rename(columns={'State/UnionTerritory':'State'}, inplace=True)
+    data1_max=pd.merge(data1_max,z,how="outer")
+    data_top=data1_max.sort_values(by="Active Cases", ascending=False)
+    data_top.drop(columns=["Date"],inplace=True)
+    s=z.sort_values(by="TotalSamples",ascending=False)
+   
     
     
     state1=st.selectbox("select a state or UT",(data1["State/UnionTerritory"].unique()))
@@ -142,9 +160,9 @@ if analysis=="Statewise analysis":
     samples=px.line(statewise,x=statewise["State"],y="TotalSamples",color="TotalSamples",width=800,height=400)
     
     st.plotly_chart(samples)
-   
+
     
-    st.write("As of 31st May, UP has done the most number of states and it can be corrrelated to it being the most populous state in India. The testing is comparitively low in the union territories, considering the low population.Testing in states like Uttrakhand, Bihar,West Bengal,Orissa can be ramped up even more.")
+    st.write("As of 31st May, UP has done the most number of samples and it can be corrrelated to it being the most populous state in India. The testing is comparitively low in the union territories, considering the low population.Testing in states like Uttrakhand, Bihar,West Bengal,Orissa can be ramped up even more.")
     st.header("Recovered Cases")
     p1=px.bar(data1_max, x="State",y=data1_max["Cured"], color="Cured", height=500,width=1000)
     
@@ -187,23 +205,7 @@ if analysis=="Vaccination report":
     x=vac2["Total Covaxin Administered"].sum()
     vact=[x,y]
 
-    data1=cov[['Date', 'State/UnionTerritory','Cured','Deaths','Confirmed']]
-    data1 = data1.drop(labels=range(15086, 15114), axis=0)
-    data1["Active Cases"]=data1["Confirmed"]-(data1["Cured"]+data1["Deaths"])
-    daily = cov.groupby(['Date'])['Confirmed', 'Deaths','Cured',].sum().reset_index()
-    daily['new_confirmed'] = daily.Confirmed.diff()
-    daily['new_deaths'] = daily.Deaths.diff()
-    daily['new_cured'] = daily.Cured.diff()
-
-    data1_max=data1[data1["Date"]=="2021-05-31"]
-
-    data1_max["Death rate"]=data1_max["Deaths"]/data1_max["Confirmed"]
-    data1_max["Recovery rate"]=data1_max["Cured"]/data1_max["Confirmed"]
-    data1_max.rename(columns={'State/UnionTerritory':'State'}, inplace=True)
-    data1_max=pd.merge(data1_max,z,how="outer")
-    data_top=data1_max.sort_values(by="Active Cases", ascending=False)
-    data_top.drop(columns=["Date"],inplace=True)
-    s=z.sort_values(by="TotalSamples",ascending=False)
+    
 
     st.header("Let's look at how the vaccination drive is going on in the country")
     st.write("First, we need to make sense out of the numbers. The following data gives a gist of how far we have suceeded with the ongoing drive")
