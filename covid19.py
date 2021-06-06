@@ -73,9 +73,9 @@ if analysis=="India-Daily report":
      
      s=z.sort_values(by="TotalSamples",ascending=False)
 
-     st.header("How's India dealing with the pandemic?")
+     st.header("How is India dealing with the pandemic?")
     
-     st.write("Here's the latest data that's available")
+     st.write("Here is the latest data that's available")
      st.write((daily[daily["Date"]==daily["Date"].max()]).transpose())
      st.write("Visualising the data to gain more insights,")
      st.header("Confirmed, Deaths and Recovered")
@@ -219,7 +219,7 @@ if analysis=="Vaccination report":
     figx.add_trace(go.Bar(x=vaccine["State"],y=vaccine["Male(Individuals Vaccinated)"],name="Male"))
     figx.add_trace(go.Bar(x=vaccine["State"], y= vaccine["Female(Individuals Vaccinated)"], name='Female'))
     figx.add_trace(go.Bar(x=vaccine["State"], y= vaccine["Transgender(Individuals Vaccinated)"], name='Transgender'))
-    st.write("The graph shows proportion of genders vaccinated in each state. The male is to female ratio seems balance whereas the colour representing the transgenders or third genders is hardly see. That might be because the population disparity, In India there are about 500,000 people eho identify as the third gender. Though they account for about xxx of the total population,it should be made sure that they are being given access to all the facilities in a safe and secured way. ")
+    st.write("The graph shows proportion of genders vaccinated in each state. The male is to female ratio seems balanced whereas the colour representing the transgender or third gender is hardly seen. This might be because of the large disparity in population. In India there are about 490,000 people who identify as the third gender. And about 67% of them live in rural areas. It should be made sure that they are being given access to all the facilities in a safe and secured way. ")
     figx.update_layout(barmode='stack',legend_orientation="h",legend=dict(x= 0.3, y=1.1),
                  paper_bgcolor='white',
                  plot_bgcolor = "white",)
@@ -227,19 +227,19 @@ if analysis=="Vaccination report":
     st.header("Gender-wise Distribution")
     gender=px.pie(India_status,names=["Male(Individuals Vaccinated)","Female(Individuals Vaccinated)","Transgender(Individuals Vaccinated)"], values=l,color_discrete_sequence=px.colors.sequential.RdBu)
     st.plotly_chart(gender)
-    st.write("The pie chart shows, the number of transgenders who have been administerd the vaccine account to only 0.0156% of the total. People should be made aware and responsibility should be taken up by higher bodies for a faster, smoother and a just vaccination drive. ")
+    st.write("The pie chart shows, the number of transgenders who have been administerd the vaccine account to only 0.0156% of the total. People should be made aware and responsibility should be taken up by higher bodies for a faster, smoother and a fair vaccination drive. ")
     
     st.write("Population of India as on 3rd June is 1392234846.0,out of which 336787050.0 have atleats got their first jab, hence we still have" ,Percentage_left,"% of poplulation who are yet to recieve their ammunition against the virus")
     st.header("Vaccines")
     
    
-    st.write("India has been adminsistering two of its indigenous vaccines to its population, i.e. Covaxin and CoviShield. The following data shows the state-wise consumption of each of the vaccines of 31st May  ")
+    st.write("India has been adminsistering two of its indigenous vaccines to its population, i.e. Covaxin and CoviShield. The following data shows the state-wise consumption of each of the vaccines as of 31st May 2021 ")
     st.write(vac2.drop(labels=13))
     type=px.pie(India_status,names=["Total Covaxin Administered","Total CoviShield Administered"], values=vact)
     st.plotly_chart(type)
     
     st.header("State-wise Vaccination Summary")
     st.write(vaccination)
-    st.header("The following Chloropleth shows the progress of the vaccination drive in the country. Move your cursor over any of the states")
+    st.header("The following Chloropleth shows the progress of the vaccination drive in the country. Move your cursor over any of the states to get a quick summary.")
     vac_temp='''<div class='tableauPlaceholder' id='viz1622789126447' style='position: relative'><noscript><a href='#'><img alt='VACCINATION DATA ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;va&#47;vaccinationdata_16227420602060&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='vaccinationdata_16227420602060&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;va&#47;vaccinationdata_16227420602060&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1622789126447');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>'''
     components.html(vac_temp, width=700,height=500)
