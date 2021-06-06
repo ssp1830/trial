@@ -70,44 +70,44 @@ if analysis=="India-Daily report":
      data_top.drop(columns=["Date"],inplace=True)
      s=z.sort_values(by="TotalSamples",ascending=False)
 
-    st.header("How's India dealing with the pandemic")
+     st.header("How's India dealing with the pandemic")
     
-    st.write("Here's the latest data that's available")
-    st.write((daily[daily["Date"]==daily["Date"].max()]).transpose())
-    st.write("Visualising the data to gain more insights,")
-    st.header("Confirmed, Deaths and Recovered")
-    fig1 = go.Figure(go.Bar(x= daily.Date, y= daily.Cured, name='Recovered'))
-    fig1.add_trace(go.Bar(x=daily.Date, y= daily.Deaths, name='Deaths'))
-    fig1.add_trace(go.Bar(x=daily.Date, y= daily.Confirmed, name='Confirmed'))
-    fig1.update_layout(barmode='stack',legend_orientation="h",legend=dict(x= 0.3, y=1.1),
+     st.write("Here's the latest data that's available")
+     st.write((daily[daily["Date"]==daily["Date"].max()]).transpose())
+     st.write("Visualising the data to gain more insights,")
+     st.header("Confirmed, Deaths and Recovered")
+     fig1 = go.Figure(go.Bar(x= daily.Date, y= daily.Cured, name='Recovered'))
+     fig1.add_trace(go.Bar(x=daily.Date, y= daily.Deaths, name='Deaths'))
+     fig1.add_trace(go.Bar(x=daily.Date, y= daily.Confirmed, name='Confirmed'))
+     fig1.update_layout(barmode='stack',legend_orientation="h",legend=dict(x= 0.3, y=1.1),
                  paper_bgcolor='white',
                  plot_bgcolor = "white",)
     
-    st.plotly_chart(fig1)
-    st.write("The graph shown above makes it evident that the number of deaths is very less when compared to the daily confirmed cases and the number of people who recovered, so let's analyze the number of deaths separately.")
+     st.plotly_chart(fig1)
+     st.write("The graph shown above makes it evident that the number of deaths is very less when compared to the daily confirmed cases and the number of people who recovered, so let's analyze the number of deaths separately.")
     
-    st.header("Daily Deaths")
+     st.header("Daily Deaths")
     
-    fig_deaths=go.Figure(go.Bar(x= daily.Date, y= daily.new_deaths, name='Daily Deaths',marker_color="red" ))
+     fig_deaths=go.Figure(go.Bar(x= daily.Date, y= daily.new_deaths, name='Daily Deaths',marker_color="red" ))
     
   
-    st.plotly_chart(fig_deaths)
-    st.write("We see a clear downward trend post mid May")
-    st.header("Let's now see how the trends have changed over the months this year.")
-    data1['Date'] = pd.to_datetime(data1['Date'])
-    df21=data1[(data1["Date"]>="2021-01-01") ]
+     st.plotly_chart(fig_deaths)
+     st.write("We see a clear downward trend post mid May")
+     st.header("Let's now see how the trends have changed over the months this year.")
+     data1['Date'] = pd.to_datetime(data1['Date'])
+     df21=data1[(data1["Date"]>="2021-01-01") ]
     
     
-    df21 = (df21.groupby(df21['Date'].dt.month_name(), sort=False)["Cured","Deaths","Confirmed","Active Cases"]).mean().reset_index()
-    df21.drop(labels=range(5,6),axis=0,inplace=True)
-    df21.Date.rename("Month",inplace=True)
-    active=px.bar(y=df21["Active Cases"],x=df21.Date,title="Monthly Active Cases",labels={"x":"Month","y":"Active Cases"},color=df21["Active Cases"])
-    cured=px.bar(y=df21["Cured"],x=df21["Date"],title="Monthly Cured",labels={"x":"Month","y":"Cured"},color=df21["Cured"])
+     df21 = (df21.groupby(df21['Date'].dt.month_name(), sort=False)["Cured","Deaths","Confirmed","Active Cases"]).mean().reset_index()
+     df21.drop(labels=range(5,6),axis=0,inplace=True)
+     df21.Date.rename("Month",inplace=True)
+     active=px.bar(y=df21["Active Cases"],x=df21.Date,title="Monthly Active Cases",labels={"x":"Month","y":"Active Cases"},color=df21["Active Cases"])
+     cured=px.bar(y=df21["Cured"],x=df21["Date"],title="Monthly Cured",labels={"x":"Month","y":"Cured"},color=df21["Cured"])
     
-    st.plotly_chart(active)
-    st.write("The above graph indicates a clear spike in the number of cases in the month of April")
-    st.plotly_chart(cured)
-    st.write("The number of recoveries is increasing steadily over the months.")
+     st.plotly_chart(active)
+     st.write("The above graph indicates a clear spike in the number of cases in the month of April")
+     st.plotly_chart(cured)
+     st.write("The number of recoveries is increasing steadily over the months.")
     
 if analysis=="Statewise analysis":
     
