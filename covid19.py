@@ -47,51 +47,29 @@ statewise=state()
 vac=vaccine()
 cov=covid()
 
-data1=cov[['Date', 'State/UnionTerritory','Cured','Deaths','Confirmed']]
-data1 = data1.drop(labels=range(15086, 15114), axis=0)
-data1["Active Cases"]=data1["Confirmed"]-(data1["Cured"]+data1["Deaths"])
-daily = cov.groupby(['Date'])['Confirmed', 'Deaths','Cured',].sum().reset_index()
-daily['new_confirmed'] = daily.Confirmed.diff()
-daily['new_deaths'] = daily.Deaths.diff()
-daily['new_cured'] = daily.Cured.diff()
-z=statewise.groupby("State")["TotalSamples"].last().reset_index()
-data1_max=data1[data1["Date"]=="2021-05-31"]
-
-data1_max["Death rate"]=data1_max["Deaths"]/data1_max["Confirmed"]
-data1_max["Recovery rate"]=data1_max["Cured"]/data1_max["Confirmed"]
-data1_max.rename(columns={'State/UnionTerritory':'State'}, inplace=True)
-data1_max=pd.merge(data1_max,z,how="outer")
-data_top=data1_max.sort_values(by="Active Cases", ascending=False)
-data_top.drop(columns=["Date"],inplace=True)
-s=z.sort_values(by="TotalSamples",ascending=False)
-
-
-
-vac["Updated On"]=pd.to_datetime(vac["Updated On"])
-vac=vac[vac["Updated On"]<"2021-06-01"]
-vaccine=vac.groupby("State")["Updated On","Total Individuals Vaccinated","Total Sessions Conducted","Total Sites ","First Dose Administered","Second Dose Administered","Male(Individuals Vaccinated)","Female(Individuals Vaccinated)","Transgender(Individuals Vaccinated)",	"Total Covaxin Administered"	,"Total CoviShield Administered","Total Doses Administered"].last().reset_index()
-vaccine["Total Individuals Vaccinated"].sum()
-Indian_population=1392234846.0
-vacs_left=Indian_population-336787050.0
-Percentage_left=(vacs_left/Indian_population)*100
-vac_india=vac[vac["State"]=="India"]
-vaccine.drop(labels=13,inplace=True)
-vaccination=vac.groupby("State")['Total Individuals Vaccinated','Male(Individuals Vaccinated)','Female(Individuals Vaccinated)', 'Transgender(Individuals Vaccinated)','First Dose Administered',	'Second Dose Administered','Total Covaxin Administered', 'Total CoviShield Administered','Total Doses Administered'].last()
-vaccination.reset_index()
-
-vac2=vac.groupby("State")["Total CoviShield Administered","Total Covaxin Administered"].last().reset_index()
-
-INDIA_VACS=vac2[vac2["State"]=="India"]
-India_status=vaccination.iloc[13:14]
-l=[90095606.0/168393525.0, 78271582.0/	168393525.0,26337.0/168393525.0]
-y=vac2["Total CoviShield Administered"].sum()
-x=vac2["Total Covaxin Administered"].sum()
-vact=[x,y]
 
 
 
 analysis=st.sidebar.selectbox("Select analysis type", ("India-Daily report","Statewise analysis","Vaccination report"))
 if analysis=="India-Daily report":
+     data1=cov[['Date', 'State/UnionTerritory','Cured','Deaths','Confirmed']]
+     data1 = data1.drop(labels=range(15086, 15114), axis=0)
+     data1["Active Cases"]=data1["Confirmed"]-(data1["Cured"]+data1["Deaths"])
+     daily = cov.groupby(['Date'])['Confirmed', 'Deaths','Cured',].sum().reset_index()
+     daily['new_confirmed'] = daily.Confirmed.diff()
+     daily['new_deaths'] = daily.Deaths.diff()
+     daily['new_cured'] = daily.Cured.diff()
+
+     data1_max=data1[data1["Date"]=="2021-05-31"]
+
+     data1_max["Death rate"]=data1_max["Deaths"]/data1_max["Confirmed"]
+     data1_max["Recovery rate"]=data1_max["Cured"]/data1_max["Confirmed"]
+     data1_max.rename(columns={'State/UnionTerritory':'State'}, inplace=True)
+     data1_max=pd.merge(data1_max,z,how="outer")
+     data_top=data1_max.sort_values(by="Active Cases", ascending=False)
+     data_top.drop(columns=["Date"],inplace=True)
+     s=z.sort_values(by="TotalSamples",ascending=False)
+
     st.header("How's India dealing with the pandemic")
     
     st.write("Here's the latest data that's available")
@@ -186,6 +164,45 @@ if analysis=="Statewise analysis":
    
   
 if analysis=="Vaccination report":
+    vac["Updated On"]=pd.to_datetime(vac["Updated On"])
+    vac=vac[vac["Updated On"]<"2021-06-01"]
+    vaccine=vac.groupby("State")["Updated On","Total Individuals Vaccinated","Total Sessions Conducted","Total Sites ","First Dose Administered","Second Dose Administered","Male(Individuals Vaccinated)","Female(Individuals Vaccinated)","Transgender(Individuals Vaccinated)",	"Total Covaxin Administered"	,"Total CoviShield Administered","Total Doses Administered"].last().reset_index()
+    vaccine["Total Individuals Vaccinated"].sum()
+    Indian_population=1392234846.0
+    vacs_left=Indian_population-336787050.0
+    Percentage_left=(vacs_left/Indian_population)*100
+    vac_india=vac[vac["State"]=="India"]
+    vaccine.drop(labels=13,inplace=True)
+    vaccination=vac.groupby("State")['Total Individuals Vaccinated','Male(Individuals Vaccinated)','Female(Individuals Vaccinated)', 'Transgender(Individuals Vaccinated)','First Dose Administered',	'Second Dose Administered','Total Covaxin Administered', 'Total CoviShield Administered','Total Doses Administered'].last()
+    vaccination.reset_index()
+
+    vac2=vac.groupby("State")["Total CoviShield Administered","Total Covaxin Administered"].last().reset_index()
+
+    INDIA_VACS=vac2[vac2["State"]=="India"]
+    India_status=vaccination.iloc[13:14]
+    l=[90095606.0/168393525.0, 78271582.0/	168393525.0,26337.0/168393525.0]
+    y=vac2["Total CoviShield Administered"].sum()
+    x=vac2["Total Covaxin Administered"].sum()
+    vact=[x,y]
+
+    data1=cov[['Date', 'State/UnionTerritory','Cured','Deaths','Confirmed']]
+    data1 = data1.drop(labels=range(15086, 15114), axis=0)
+    data1["Active Cases"]=data1["Confirmed"]-(data1["Cured"]+data1["Deaths"])
+    daily = cov.groupby(['Date'])['Confirmed', 'Deaths','Cured',].sum().reset_index()
+    daily['new_confirmed'] = daily.Confirmed.diff()
+    daily['new_deaths'] = daily.Deaths.diff()
+    daily['new_cured'] = daily.Cured.diff()
+
+    data1_max=data1[data1["Date"]=="2021-05-31"]
+
+    data1_max["Death rate"]=data1_max["Deaths"]/data1_max["Confirmed"]
+    data1_max["Recovery rate"]=data1_max["Cured"]/data1_max["Confirmed"]
+    data1_max.rename(columns={'State/UnionTerritory':'State'}, inplace=True)
+    data1_max=pd.merge(data1_max,z,how="outer")
+    data_top=data1_max.sort_values(by="Active Cases", ascending=False)
+    data_top.drop(columns=["Date"],inplace=True)
+    s=z.sort_values(by="TotalSamples",ascending=False)
+
     st.header("Let's look at how the vaccination drive is going on in the country")
     st.write("First, we need to make sense out of the numbers. The following data gives a gist of how far we have suceeded with the ongoing drive")
     st.write(India_status.transpose())
