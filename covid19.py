@@ -65,10 +65,11 @@ if analysis=="India-Daily report":
      data1_max["Death rate"]=data1_max["Deaths"]/data1_max["Confirmed"]
      data1_max["Recovery rate"]=data1_max["Cured"]/data1_max["Confirmed"]
      data1_max.rename(columns={'State/UnionTerritory':'State'}, inplace=True)
+     z=statewise.groupby("State")["TotalSamples"].last().reset_index()
      data1_max=pd.merge(data1_max,z,how="outer")
      data_top=data1_max.sort_values(by="Active Cases", ascending=False)
      data_top.drop(columns=["Date"],inplace=True)
-     z=statewise.groupby("State")["TotalSamples"].last().reset_index()
+     
      s=z.sort_values(by="TotalSamples",ascending=False)
 
      st.header("How's India dealing with the pandemic")
