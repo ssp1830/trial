@@ -42,7 +42,7 @@ def vacs():
     return vac
 vac=vacs()
 def india():
-   cov=pd.read_csv("C:/Users/P. SHANKAR/Downloads/archive (8)/covid_19_india.csv")
+   cov=pd.read_csv("archive (8)/covid_19_india.csv)
    return cov
 cov=india()
 data1=cov[['Date', 'State/UnionTerritory','Cured','Deaths','Confirmed']]
