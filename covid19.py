@@ -33,15 +33,16 @@ st.markdown("<style>body{background-color:blue;}</style>",unsafe_allow_html=True
 
 
 def state():
-    state=pd.read_csv("archive (8)/StatewiseTestingDetails.csv")
-    return state
+    statewise=pd.read_csv("archive (8)/StatewiseTestingDetails.csv")
+    return statewise
 @st.cache(allow_output_mutation=True)
 def vaccine():
  vac=pd.read_csv("archive (8)/covid_vaccine_statewise.csv")
+ return vac
 @st.cache(allow_output_mutation=True)
 def covid():
     cov=pd.read_csv("archive (8)/covid_19_india.csv")
-    return covid
+    return cov
 statewise=state()
 vac=vaccine()
 cov=covid()
