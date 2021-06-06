@@ -156,7 +156,7 @@ if analysis=="Statewise analysis":
     st.write("As of 31st May, Maharshtra has the highest number of mortalities due to Covid(94.84K), followed by Karnataka in the second with 29.09K deaths")
     
     st.header("Total Samples taken")
-    samples=px.line(statewise,x=statewise.State,y="TotalSamples",color="TotalSamples",width=800,height=400)
+    samples=px.line(statewise,x=statewise["State"],y="TotalSamples",color="TotalSamples",width=800,height=400)
     
     st.plotly_chart(samples)
    
@@ -190,8 +190,8 @@ if analysis=="Vaccination report":
     st.header("Individuals Vaccinated in each state")
     figx=go.Figure()
     figx.add_trace(go.Bar(x=vaccine["State"],y=vaccine["Male(Individuals Vaccinated)"],name="Male"))
-    figx.add_trace(go.Bar(x=vaccine.State, y= vaccine["Female(Individuals Vaccinated)"], name='Female'))
-    figx.add_trace(go.Bar(x=vaccine.State, y= vaccine["Transgender(Individuals Vaccinated)"], name='Transgender'))
+    figx.add_trace(go.Bar(x=vaccine["State"], y= vaccine["Female(Individuals Vaccinated)"], name='Female'))
+    figx.add_trace(go.Bar(x=vaccine["State"], y= vaccine["Transgender(Individuals Vaccinated)"], name='Transgender'))
     st.write("The graph shows proportion of genders vaccinated in each state. The male is to female ratio seems balance whereas the colour representing the transgenders or third genders is hardly see. That might be because the population disparity, In India there are about 500,000 people eho identify as the third gender. Though they account for about xxx of the total population,it should be made sure that they are being given access to all the facilities in a safe and secured way. ")
     figx.update_layout(barmode='stack',legend_orientation="h",legend=dict(x= 0.3, y=1.1),
                  paper_bgcolor='white',
