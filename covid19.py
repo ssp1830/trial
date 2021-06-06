@@ -236,7 +236,7 @@ if analysis=="Vaccination report":
    
     st.write("India has been adminsistering two of its indigenous vaccines to its population, i.e. Covaxin and CoviShield. The following data shows the state-wise consumption of both the vaccines as of 31st May 2021 ")
     st.write(vac2.drop(labels=13))
-    type=px.pie(India_status,names=["Total Covaxin Administered","Total CoviShield Administered"], values=vact, color_discrete_sequence=px.colors.sequential.Agsunset)
+    type=px.pie(India_status,names=["Total Covaxin Administered","Total CoviShield Administered"], values=vact, color_discrete_sequence=px.colors.sequential.Sunsetdark)
     st.plotly_chart(type)
     
     st.header("State-wise Vaccination Summary")
