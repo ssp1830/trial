@@ -28,6 +28,7 @@ st.markdown("<style>body{background-color:blue;}</style>",unsafe_allow_html=True
 
 
 
+
 @st.cache
 
 
@@ -62,6 +63,7 @@ data1_max=pd.merge(data1_max,z,how="outer")
 data_top=data1_max.sort_values(by="Active Cases", ascending=False)
 data_top.drop(columns=["Date"],inplace=True)
 s=z.sort_values(by="TotalSamples",ascending=False)
+
 
 
 vac["Updated On"]=pd.to_datetime(vac["Updated On"])
@@ -156,7 +158,7 @@ if analysis=="Statewise analysis":
     st.write("As of 31st May, Maharshtra has the highest number of mortalities due to Covid(94.84K), followed by Karnataka in the second with 29.09K deaths")
     
     st.header("Total Samples taken")
-    samples=px.line(statewise,x=statewise["State/UnionTerritory"],y="TotalSamples",color="TotalSamples",width=800,height=400)
+    samples=px.line(statewise,x=statewise["State"],y="TotalSamples",color="TotalSamples",width=800,height=400)
     
     st.plotly_chart(samples)
    
