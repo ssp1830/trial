@@ -17,8 +17,8 @@ from datetime import datetime as dt
 import streamlit.components.v1 as components
 import toml
 
-st.title("COVID-19-Report")
-st.write("India has been recovering from the 2nd wave of Covid-19. Access to the enormous amount of data makes it easier to visualize and understand what's really happening! Here is a dashboard that visualises the spread of the pandemic in the country. Click '>' on the top left corner to choose the analysis type. Sources of the data used: Kaggle, https://www.mygov.in/covid-19/")
+st.title("COVID-19-Report 🦠")
+st.write("India has been recovering from the 2nd wave of Covid-19. Access to the enormous amount of data makes it easier to visualize and understand what's really happening! Here is a dashboard that visualises the spread of the pandemic in the country. The data present in this analysis was taken from Kaggle. The data consists information about COVID-19 in India until May 31st. Click '>' on the top left corner to choose the analysis type. ")
 image=Image.open("cov19.jpg")
 st.image(image,use_column_width=True)
 st.sidebar.title("ANALYSIS TYPE")
@@ -77,7 +77,7 @@ if analysis=="India-Daily report":
     
      st.write("Here is the latest data that's available")
      st.write((daily[daily["Date"]==daily["Date"].max()]).transpose())
-     st.write("Visualising the data to gain more insights,")
+     st.write("Visualising the data to gain more insights📉")
      st.header("Confirmed, Deaths and Recovered")
      fig1 = go.Figure(go.Bar(x= daily.Date, y= daily.Cured, name='Recovered'))
      fig1.add_trace(go.Bar(x=daily.Date, y= daily.Deaths, name='Deaths'))
@@ -218,7 +218,7 @@ if analysis=="Vaccination report":
     st.header("Let us look at how the vaccination drive is going on in the country")
     st.write("First, we need to make sense out of the numbers. The following data gives a gist of how far we have suceeded with the ongoing drive")
     st.write(India_status.transpose())
-    st.write("Numbers do not provide the best picture, So it is always better to visualize to draw necessary conclusions")
+    st.write("Numbers do not provide the best picture, So it is always better to visualize to draw necessary conclusions 📊")
     st.header("Individuals vaccinated in each state")
     figx=go.Figure()
     figx.add_trace(go.Bar(x=vaccine["State"],y=vaccine["Male(Individuals Vaccinated)"],name="Male"))
