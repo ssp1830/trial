@@ -16,8 +16,9 @@ from PIL import Image
 from datetime import datetime as dt
 import streamlit.components.v1 as components
 import toml
+st.beta_set_page_config(page_title='Covid-19.io',page_icon=🦠)
 
-st.title("COVID-19-Report 🦠")
+st.title("COVID-19-Report")
 st.write("India has been recovering from the 2nd wave of Covid-19. Access to the enormous amount of data makes it easier to visualize and understand what's really happening! Here is a dashboard that visualises the spread of the pandemic in the country. The data present in this analysis was taken from Kaggle. The data consists information about COVID-19 in India until May 31st. Click '>' on the top left corner to choose the analysis type. ")
 image=Image.open("cov19.jpg")
 st.image(image,use_column_width=True)
