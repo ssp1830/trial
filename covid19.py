@@ -19,7 +19,7 @@ import toml
 
 
 st.title("COVID-19-Report")
-st.write("India has been recovering from the 2nd wave of Covid-19. Access to the enormous amount of data makes it easier to visualize and understand what's really happening! Here is a dashboard that visualises the spread of the pandemic in the country. The data present in this analysis was taken from Kaggle. The data consists information about COVID-19 in India until May 31st. Click '>' on the top left corner to choose the analysis type. ")
+st.write("India has been recovering from the 2nd wave of Covid-19. Access to the enormous amount of data makes it easier to visualize and understand what's really happening! Here is a dashboard that visualises the spread of the pandemic in the country. The data used in this analysis was taken from Kaggle. The data consists information about COVID-19 in India until May 31st 2021. Click '>' on the top left corner to choose the analysis type. ")
 image=Image.open("cov19.jpg")
 st.image(image,use_column_width=True)
 st.sidebar.title("ANALYSIS TYPE")
