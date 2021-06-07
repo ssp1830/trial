@@ -18,7 +18,7 @@ import streamlit.components.v1 as components
 import toml
 
 st.title("COVID-19-Report")
-st.write("India has been recovering from the 2nd wave of Covid-19. Access to the enormous amount of data makes it easier to visualize and understand what's really happening! Here is a dashboard that visualises the spread of the pandemic in the country. Click '>' on the top left corner to choose the analysis type. ")
+st.write("India has been recovering from the 2nd wave of Covid-19. Access to the enormous amount of data makes it easier to visualize and understand what's really happening! Here is a dashboard that visualises the spread of the pandemic in the country. Click '>' on the top left corner to choose the analysis type. Sources of the data used: Kaggle, https://www.mygov.in/covid-19/")
 image=Image.open("cov19.jpg")
 st.image(image,use_column_width=True)
 st.sidebar.title("ANALYSIS TYPE")
@@ -161,7 +161,7 @@ if analysis=="Statewise analysis":
     p_rate=px.bar(data1_max,x="State",y="Death rate",color="Death rate",width=1000)
     st.header("Death Rate")
     st.plotly_chart(p_rate)
-    st.write("While Maharashtra has the highest number of deaths (94.84K) followed by Karnataka(29.09K), Punjab is seen to has the highest mortality rate.")
+    st.write("While Maharashtra has the highest number of deaths (94.84K) followed by Karnataka(29.09K), Punjab is seen to have the highest mortality rate.")
     
     st.header("Total Samples taken")
     samples=px.bar(statewise,x=statewise["State"],y="TotalSamples",color="State",width=800,height=400)
