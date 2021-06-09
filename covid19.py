@@ -209,7 +209,7 @@ if analysis=="Vaccination report":
 
     INDIA_VACS=vac2[vac2["State"]=="India"]
     India_status=vaccination.iloc[13:14]
-    l=[90095606.0/168393525.0, 78271582.0/	168393525.0,26337.0/168393525.0]
+    l=[98907905.0/228624578.0, 84886553.0/	228624578.0,30500.0/228624578.0]
     y=vac2["Total CoviShield Administered"].sum()
     x=vac2["Total Covaxin Administered"].sum()
     vact=[x,y]
