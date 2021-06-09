@@ -235,7 +235,7 @@ if analysis=="Vaccination report":
     st.plotly_chart(gender)
     st.write("The pie chart shows, the number of transgenders who have been administerd the vaccine account to only 0.0166% of the total. People should be made aware and responsibility should be taken up by higher bodies for a faster, smoother and a fair vaccination drive. ")
     
-    st.write("Population of India as on 3rd June is about 1.392 Billion. Totally 22,86,24,578 doses have been adminsistered so far and,",India_status["Total Individuals Vaccinated"], "have been fully vaccinated,hence we still have" ,round(Percentage_left,3),"% of poplulation who are yet to receive their ammunition against the virus.")
+    st.write("Population of India as on 3rd June is about 1.392 Billion. Totally 228,624,578 doses have been adminsistered so far and,",183,824,958, "have been fully vaccinated,hence we still have" ,round(Percentage_left,3),"% of poplulation who are yet to receive their ammunition against the virus.")
     st.header("Vaccines")
     
    
