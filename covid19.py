@@ -198,7 +198,7 @@ if analysis=="Vaccination report":
     vaccine=vac.groupby("State")["Updated On","Total Individuals Vaccinated","Total Sessions Conducted","Total Sites ","First Dose Administered","Second Dose Administered","Male(Individuals Vaccinated)","Female(Individuals Vaccinated)","Transgender(Individuals Vaccinated)",	"Total Covaxin Administered"	,"Total CoviShield Administered","Total Doses Administered"].last().reset_index()
     vaccine["Total Individuals Vaccinated"].sum()
     Indian_population=1392234846.0
-    vacs_left=Indian_population-336787050.0
+    vacs_left=Indian_population-228624578
     Percentage_left=(vacs_left/Indian_population)*100
     vac_india=vac[vac["State"]=="India"]
     vaccine.drop(labels=13,inplace=True)
@@ -235,11 +235,11 @@ if analysis=="Vaccination report":
     st.plotly_chart(gender)
     st.write("The pie chart shows, the number of transgenders who have been administerd the vaccine account to only 0.0156% of the total. People should be made aware and responsibility should be taken up by higher bodies for a faster, smoother and a fair vaccination drive. ")
     
-    st.write("Population of India as on 3rd June is about 1.392 Billion, out of which 336787050.0 have atleatst got their first jab, hence we still have" ,round(Percentage_left,3),"% of poplulation who are yet to receive their ammunition against the virus.")
+    st.write("Population of India as on 3rd June is about 1.392 Billion, out of which totally 22.86,24,578 doses have been adminsistered so far, hence we still have" ,round(Percentage_left,3),"% of poplulation who are yet to receive their ammunition against the virus.")
     st.header("Vaccines")
     
    
-    st.write("India has been adminsistering two of its indigenous vaccines to its population, i.e. Covaxin and CoviShield. The following data shows the state-wise consumption of both the vaccines as of 31st May 2021 ")
+    st.write("India has been adminsistering two of its indigenous vaccines to its population, i.e. Covaxin and CoviShield. The following data shows the state-wise consumption of both the vaccines as of 8th June 2021 ")
     st.write(vac2.drop(labels=13))
     type=px.pie(India_status,names=["Total Covaxin Administered","Total CoviShield Administered"], values=vact, color_discrete_sequence=px.colors.sequential.Burg)
     st.plotly_chart(type)
