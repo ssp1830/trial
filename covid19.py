@@ -162,7 +162,7 @@ if analysis=="Statewise analysis":
     p_rate=px.bar(data1_max,x="State",y="Death rate",color="Death rate",width=1000)
     st.header("Death Rate")
     st.plotly_chart(p_rate)
-    st.write("While Maharashtra has the highest number of deaths (94.84K) followed by Karnataka(29.09K), Punjab is seen to have the highest mortality rate.")
+    st.write("While Maharashtra has the highest number of deaths (100.47K) followed by Karnataka(31.92K), Punjab is seen to have the highest mortality rate.")
     
     st.header("Total Samples taken")
     samples=px.bar(statewise,x=statewise["State"],y="TotalSamples",color="State",width=800,height=400)
