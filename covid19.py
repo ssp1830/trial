@@ -54,7 +54,7 @@ cov=covid()
 analysis=st.sidebar.selectbox("Select analysis type", ("India-Daily report","Statewise analysis","Vaccination report"))
 if analysis=="India-Daily report":
      data1=cov[['Date', 'State/UnionTerritory','Cured','Deaths','Confirmed']]
-     data1 = data1.drop(labels=range(15086, 15114), axis=0)
+     
      data1["Active Cases"]=data1["Confirmed"]-(data1["Cured"]+data1["Deaths"])
      daily = cov.groupby(['Date'])['Confirmed', 'Deaths','Cured',].sum().reset_index()
      daily['new_confirmed'] = daily.Confirmed.diff()
@@ -109,21 +109,21 @@ if analysis=="India-Daily report":
      cured=px.bar(y=df21["Cured"],x=df21["Date"],labels={"x":"Month","y":"Cured"},color=df21["Cured"])
      st.header("Monthly Active Cases")
      st.plotly_chart(active)
-     st.write("The above graph indicates a clear spike in the number of cases in the month of April")
+     st.write("The above graph indicates a clear spike in the number of cases in the month of April, May.")
      st.header("Monthly Cured Cases")
      st.plotly_chart(cured)
      st.write("The number of recoveries is increasing steadily over the months.")
     
 if analysis=="Statewise analysis":
     data1=cov[['Date', 'State/UnionTerritory','Cured','Deaths','Confirmed']]
-    data1 = data1.drop(labels=range(15086, 15114), axis=0)
+    
     data1["Active Cases"]=data1["Confirmed"]-(data1["Cured"]+data1["Deaths"])
     daily = cov.groupby(['Date'])['Confirmed', 'Deaths','Cured',].sum().reset_index()
     daily['new_confirmed'] = daily.Confirmed.diff()
     daily['new_deaths'] = daily.Deaths.diff()
     daily['new_cured'] = daily.Cured.diff()
 
-    data1_max=data1[data1["Date"]=="2021-05-31"]
+    data1_max=data1[data1["Date"]=="2021-06-08"]
 
     data1_max["Death rate"]=data1_max["Deaths"]/data1_max["Confirmed"]
     data1_max["Recovery rate"]=data1_max["Cured"]/data1_max["Confirmed"]
