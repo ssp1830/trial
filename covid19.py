@@ -198,7 +198,7 @@ if analysis=="Vaccination report":
     vaccine=vac.groupby("State")["Updated On","Total Individuals Vaccinated","Total Sessions Conducted","Total Sites ","First Dose Administered","Second Dose Administered","Male(Individuals Vaccinated)","Female(Individuals Vaccinated)","Transgender(Individuals Vaccinated)",	"Total Covaxin Administered"	,"Total CoviShield Administered","Total Doses Administered"].last().reset_index()
     vaccine["Total Individuals Vaccinated"].sum()
     Indian_population=1392234846.0
-    vacs_left=Indian_population-228624578
+    vacs_left=Indian_population-183824958
     Percentage_left=(vacs_left/Indian_population)*100
     vac_india=vac[vac["State"]=="India"]
     vaccine.drop(labels=13,inplace=True)
@@ -233,9 +233,9 @@ if analysis=="Vaccination report":
     st.header("Gender-wise Distribution")
     gender=px.pie(India_status,names=["Male(Individuals Vaccinated)","Female(Individuals Vaccinated)","Transgender(Individuals Vaccinated)"], values=l,color_discrete_sequence=px.colors.sequential.RdBu)
     st.plotly_chart(gender)
-    st.write("The pie chart shows, the number of transgenders who have been administerd the vaccine account to only 0.0156% of the total. People should be made aware and responsibility should be taken up by higher bodies for a faster, smoother and a fair vaccination drive. ")
+    st.write("The pie chart shows, the number of transgenders who have been administerd the vaccine account to only 0.0166% of the total. People should be made aware and responsibility should be taken up by higher bodies for a faster, smoother and a fair vaccination drive. ")
     
-    st.write("Population of India as on 3rd June is about 1.392 Billion, out of which totally 22.86,24,578 doses have been adminsistered so far, hence we still have" ,round(Percentage_left,3),"% of poplulation who are yet to receive their ammunition against the virus.")
+    st.write("Population of India as on 3rd June is about 1.392 Billion. Totally 22,86,24,578 doses have been adminsistered so far and,",India_status["Total Individuals Vaccinated"], "have been fully vaccinated,hence we still have" ,round(Percentage_left,3),"% of poplulation who are yet to receive their ammunition against the virus.")
     st.header("Vaccines")
     
    
