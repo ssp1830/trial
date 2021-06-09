@@ -61,7 +61,7 @@ if analysis=="India-Daily report":
      daily['new_deaths'] = daily.Deaths.diff()
      daily['new_cured'] = daily.Cured.diff()
 
-     data1_max=data1[data1["Date"]=="2021-06-08"]
+     data1_max=data1[data1["Date"]==data1["Date"].max()]
 
      data1_max["Death rate"]=data1_max["Deaths"]/data1_max["Confirmed"]
      data1_max["Recovery rate"]=data1_max["Cured"]/data1_max["Confirmed"]
