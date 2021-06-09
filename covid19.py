@@ -77,7 +77,7 @@ if analysis=="India-Daily report":
      st.header("How is India dealing with the pandemic?")
     
      st.write("Here is the latest data that's available")
-     st.write((daily[daily["Date"]==daily["Date"].max()]).transpose())
+     st.write(data1_max.transpose())
      st.write("Visualising the data to gain more insights📉")
      st.header("Confirmed, Deaths and Recovered")
      fig1 = go.Figure(go.Bar(x= daily.Date, y= daily.Cured, name='Recovered'))
