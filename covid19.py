@@ -19,7 +19,7 @@ import toml
 
 
 st.title("COVID-19-Report")
-st.write("India has been recovering from the 2nd wave of Covid-19. Access to the enormous amount of data makes it easier to visualize and understand what's really happening! Here is a dashboard that visualises the spread of the pandemic in the country. The data used in this analysis was taken from Kaggle. The data consists information about COVID-19 in India until May 31st 2021. Click '>' on the top left corner to choose the analysis type. ")
+st.write("India has been recovering from the 2nd wave of Covid-19. Access to the enormous amount of data makes it easier to visualize and understand what's really happening! Here is a dashboard that visualises the spread of the pandemic in the country. The data used in this analysis was taken from Kaggle. The data consists information about COVID-19 in India until 8th June 2021. Click '>' on the top left corner to choose the analysis type. ")
 image=Image.open("cov19.jpg")
 st.image(image,use_column_width=True)
 st.sidebar.title("ANALYSIS TYPE")
@@ -103,7 +103,7 @@ if analysis=="India-Daily report":
     
     
      df21 = (df21.groupby(df21['Date'].dt.month_name(), sort=False)["Cured","Deaths","Confirmed","Active Cases"]).mean().reset_index()
-     df21.drop(labels=range(5,6),axis=0,inplace=True)
+     
      df21.Date.rename("Month",inplace=True)
      active=px.bar(y=df21["Active Cases"],x=df21.Date,labels={"x":"Month","y":"Active Cases"},color=df21["Active Cases"])
      cured=px.bar(y=df21["Cured"],x=df21["Date"],labels={"x":"Month","y":"Cured"},color=df21["Cured"])
@@ -175,26 +175,26 @@ if analysis=="Statewise analysis":
     p1=px.bar(data1_max, x="State",y=data1_max["Cured"], color="Cured", height=500,width=1000)
     
     st.plotly_chart(p1)
-    st.header("Active Cases in each state(as of 31/05)")
+    st.header("Active Cases in each state(as of 8th June 2021)")
     p3=px.bar(data1_max,x="State",y="Active Cases",color="Active Cases",width=1000)
     st.plotly_chart(p3)
-    st.write("As of 31st May, Karnataka leads the chart with highest number of Active cases, followed by Tamil Nadu and Maharashtra")
+    st.write("As of 8th June, Karnataka leads the chart with highest number of Active cases, followed by Tamil Nadu and Maharashtra")
     st.header("Recovery Rate")
     
     p2=px.bar(data1_max,x="State",y="Recovery rate",color="Recovery rate",width=1000,height=800, )
     
     st.plotly_chart(p2)
     st.header("States with maximum number of cases:")
-    st.write("For better understanding, here are the 10 states with maximum number of active cases (as of 31st May)")
+    st.write("For better understanding, here are the 10 states with maximum number of active cases (as of 8th June)")
     st.write(data_top.head(10))
     st.write("The choropleth has been plotted on tableau, Move your cursor on any of the states to get an overview")
-    html_temp='''<div class='tableauPlaceholder' id='viz1623002119639' style='position: relative'><noscript><a href='#'><img alt='COVID-19 Scenario,(As of 31st May) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;co&#47;covid-19may31&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='covid-19may31&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;co&#47;covid-19may31&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1623002119639');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>'''                        
+    html_temp='''<div class='tableauPlaceholder' id='viz1623002119639' style='position: relative'><noscript><a href='#'><img alt='COVID-19 Scenario,(As of 8th June) ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;co&#47;covid-19may31&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='covid-19may31&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;co&#47;covid-19may31&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1623002119639');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>'''                        
     components.html(html_temp, width=700,height=500)
    
   
 if analysis=="Vaccination report":
     vac["Updated On"]=pd.to_datetime(vac["Updated On"])
-    vac=vac[vac["Updated On"]<"2021-06-01"]
+    vac=vac[vac["Updated On"]<"2021-06-09"]
     vaccine=vac.groupby("State")["Updated On","Total Individuals Vaccinated","Total Sessions Conducted","Total Sites ","First Dose Administered","Second Dose Administered","Male(Individuals Vaccinated)","Female(Individuals Vaccinated)","Transgender(Individuals Vaccinated)",	"Total Covaxin Administered"	,"Total CoviShield Administered","Total Doses Administered"].last().reset_index()
     vaccine["Total Individuals Vaccinated"].sum()
     Indian_population=1392234846.0
